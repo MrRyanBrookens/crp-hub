@@ -889,7 +889,7 @@ async function getWuFeedback() {
   btn.innerHTML = '<div class="spin"></div><span>Analyzing...</span>';
   var fullPrompt = 'You are a high school history teacher giving brief, direct feedback on causation thesis statements for a 10th grade student at KIPP DC. The formula: "Although [other factors], the most significant [cause/effect] of [topic] was [X] because [reason 1] and [reason 2]." Evaluate only: (1) clear claim, (2) causation language. Score X/5. Respond ONLY in raw JSON (no markdown, no backticks): {"score":"X/5","clear_claim":"1-2 sentences","causation":"1-2 sentences","revised":"stronger thesis","why":"one sentence"}\n\nContext: ' + sc.ctx + '\nPrompt: ' + sc.prompt + '\nStudent thesis: "' + thesis + '"';
   try {
-    var r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + GEMINI_KEY, {
+    var r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=' + GEMINI_KEY, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({contents:[{parts:[{text: fullPrompt}]}]})
@@ -930,7 +930,7 @@ async function getRvFeedback() {
   var promptPart = prompt ? ' Essay prompt: ' + prompt + '.' : '';
   var fullPrompt = 'You are a World History teacher at KIPP DC grading 10th grade CRP thesis statements. HTS: Causation. Formula: "Although [other factors], the most significant [cause/effect] of [topic] was [X] because [reason 1] and [reason 2]." Evaluate: (1) clear arguable claim, (2) causation language. Score X/5. Respond ONLY in raw JSON (no markdown, no backticks): {"score":"X/5","clear_claim":"feedback","causation":"feedback","revised":"stronger thesis","why":"one sentence"}\n\nTopic: ' + topic + '.' + promptPart + ' Draft thesis: "' + thesis + '"';
   try {
-    var r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + GEMINI_KEY, {
+    var r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=' + GEMINI_KEY, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({contents:[{parts:[{text: fullPrompt}]}]})
