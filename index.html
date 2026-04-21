@@ -909,8 +909,9 @@ async function getWuFeedback() {
       if (parsed) showFeedback('wu', parsed);
       else { document.getElementById('wu-fb-body').innerHTML = '<p>' + text + '</p>'; document.getElementById('wu-fb').classList.add('on'); }
     }
-  } catch(e) {
-    document.getElementById('wu-fb-body').innerHTML = '<p style="color:red">Error: ' + e.message + '</p>';
+} catch(e) {
+    console.error('WU Feedback error:', e);
+    document.getElementById('wu-fb-body').innerHTML = '<p style="color:red"><strong>Error details:</strong> ' + e.name + ': ' + e.message + '<br><small>Check browser console (F12) for more info.</small></p>';
     document.getElementById('wu-fb').classList.add('on');
   }
   btn.disabled = false;
@@ -949,8 +950,9 @@ async function getRvFeedback() {
       if (parsed) showFeedback('rv', parsed);
       else { document.getElementById('rv-fb-body').innerHTML = '<p>' + text + '</p>'; document.getElementById('rv-fb').classList.add('on'); }
     }
-  } catch(e) {
-    document.getElementById('rv-fb-body').innerHTML = '<p style="color:red">Error: ' + e.message + '</p>';
+} catch(e) {
+    console.error('RV Feedback error:', e);
+    document.getElementById('rv-fb-body').innerHTML = '<p style="color:red"><strong>Error details:</strong> ' + e.name + ': ' + e.message + '<br><small>Check browser console (F12) for more info.</small></p>';
     document.getElementById('rv-fb').classList.add('on');
   }
   btn.disabled = false;
